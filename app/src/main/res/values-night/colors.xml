@@ -3,7 +3,10 @@
     <color name="colorPrimary">#607d8b</color>
     <color name="colorPrimaryDark">#485a66</color>
     <color name="colorAccent">#546dfe</color>
+    <color name="colorPrimaryText">#e4e4e4</color>
+    <color name="colorSecondaryText">#b5b5b5</color>
 
     <color name="layout_background">#303030</color>
+    <color name="colorNavItemUnselected">#a5a5a5</color>
 
 </resources>

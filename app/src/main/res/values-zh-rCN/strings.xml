@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">丑小鸭</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+
+    <string name="historyToday">历史上的今天</string>
+    <string name="express">快递</string>
+    <string name="weather">天气</string>
+    <string name="nav_switch_theme">日/夜间模式</string>
+    <string name="nav_settings">设置</string>
+    <string name="nav_about">关于</string>
+
+    <string name="search">搜索</string>
+    <string name="mark_all_read">标记全部已读</string>
+
+    <!--Settings-->
+    <string name="notifications">通知</string>
+    <string name="alert">推送通知</string>
+    <string name="alert_desc">当包裹的物流信息更新后推送通知。</string>
+    <string name="do_not_disturb_mode">请勿打扰</string>
+    <string name="do_not_disturb_mode_desc">在设定时间内不推送通知。</string>
+    <string name="start_time">开始时间</string>
+    <string name="start_time_desc">23:00</string>
+    <string name="end_time">结束时间</string>
+    <string name="end_time_desc">06:00</string>
+    <string name="notification_interval">通知频率</string>
+    <string name="browser">浏览器</string>
+    <string name="custom_tabs">Chrome custom tabs</string>
+    <string name="custom_tabs_desc">使用Chrome Custom Tabs打开应用内的链接。</string>
+    <string name="user_interface">用户界面</string>
+    <string name="navigation_bar_tint">导航栏变色</string>
+    <string name="navigation_bar_tint_desc">为导航栏着色</string>
+    <string name="navigation_bar_restart_msg">重启应用后生效。</string>
+    <string-array name="notification_interval">
+        <item>10 分钟</item>
+        <item>30 分钟</item>
+        <item>1 小时</item>
+        <item>1.5 小时</item>
+        <item>2 小时</item>
+    </string-array>
+    <string-array name="notification_interval_item">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+    <!--Settings end-->
+
+    <string name="set_end_time_error">开始与结束的时间不能相同。</string>
+</resources>

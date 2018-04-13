@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/preferences_settings">
+
+    <PreferenceCategory android:title="@string/notifications">
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="alert"
+            android:summary="@string/alert_desc"
+            android:title="@string/alert" />
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:dependency="alert"
+            android:key="do_not_disturb_mode"
+            android:summary="@string/do_not_disturb_mode_desc"
+            android:title="@string/do_not_disturb_mode" />
+
+        <Preference
+            android:dependency="do_not_disturb_mode"
+            android:key="do_not_disturb_mode_start"
+            android:summary="@string/start_time_desc"
+            android:title="@string/start_time" />
+
+        <Preference
+            android:dependency="do_not_disturb_mode"
+            android:key="do_not_disturb_mode_end"
+            android:summary="@string/end_time_desc"
+            android:title="@string/end_time" />
+
+        <ListPreference
+            android:defaultValue="1"
+            android:dependency="alert"
+            android:entries="@array/notification_interval"
+            android:entryValues="@array/notification_interval_item"
+            android:key="notification_interval"
+            android:summary="%s"
+            android:title="@string/notification_interval" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/browser">
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="chrome_custom_tabs"
+            android:summary="@string/custom_tabs_desc"
+            android:title="@string/custom_tabs" />
+
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/user_interface">
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="navigation_bar_tint"
+            android:summary="@string/navigation_bar_tint_desc"
+            android:title="@string/navigation_bar_tint" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
