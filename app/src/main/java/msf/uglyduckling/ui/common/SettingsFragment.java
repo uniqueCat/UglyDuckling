@@ -52,7 +52,6 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 }, startHour, startMinute, true);
                 if (getActivity() != null && getActivity().getFragmentManager() != null)
                     dialog.show(getActivity().getFragmentManager(), "StartTimePickerDialog");
-
                 return true;
             }
         });
@@ -63,7 +62,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 TimePickerDialog dialog = TimePickerDialog.newInstance(new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePickerDialog view, int hourOfDay, int minute, int second) {
-                        if (startHour == endHour && startMinute == endMinute) {
+                        if (startHour == hourOfDay && startMinute == minute) {
                             if (getActivity() != null && getActivity().getWindow() != null)
                                 Snackbar.make(getActivity().getWindow().getDecorView(), R.string.set_end_time_error, Snackbar.LENGTH_SHORT).show();
                             return;

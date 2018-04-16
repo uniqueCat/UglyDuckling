@@ -8,5 +8,5 @@
 
     <color name="layout_background">#fafafa</color>
     <color name="colorNavItemUnselected">#757575</color>
-
+    <color name="historyTodayTextBg">#304ca4e7</color>
 </resources>

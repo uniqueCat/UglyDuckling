@@ -39,10 +39,10 @@ public class PrefsActivity extends BaseActivity {
                 fragment = new SettingsFragment();
                 break;
             case FLAG_ABOUT:
-                fragment = new SettingsFragment();
+                fragment = new AboutFragment();
                 break;
             case FLAG_LICENSES:
-                fragment = new SettingsFragment();
+                fragment = new LicensesFragment();
                 break;
             default:
                 throw new IllegalArgumentException("No or unknowns flag");

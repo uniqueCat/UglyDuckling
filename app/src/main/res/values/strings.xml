@@ -10,7 +10,6 @@
     <string name="nav_settings">Settings</string>
     <string name="nav_about">About</string>
     <string name="search">Search</string>
-    <string name="mark_all_read">Mark all read</string>
     <string name="express">Express</string>
     <string name="weather">Weather</string>
 
@@ -48,5 +47,70 @@
     </string-array>
     <!--Settings end-->
 
+    <!--package list page-->
+    <string name="all">All</string>
+    <string name="on_the_way">On the way</string>
+    <string name="delivered">Delivered</string>
+    <string name="action_search">Search</string>
+    <string name="mark_all_read">Mark all read</string>
+    <string name="share">Share</string>
+    <string name="activity_add_package">Add Package</string>
+    <string name="delete">Delete</string>
+    <string name="copy_code">Copy code</string>
+    <string name="set_unread">Set unread</string>
+    <string name="set_read">Set read</string>
+    <string name="remove">REMOVE</string>
+    <string name="get_status_error">Unable to get the latest status.</string>
+    <string name="network_error">Network error, try again later.</string>
+    <string name="package_number_copied">Package number has been copied successfully.</string>
+    <string name="package_removed_msg">has been removed.</string>
+    <string name="undo">UNDO</string>
+    <string name="go_to_settings">Go to settings</string>
+    <string name="to_add_packages">Click the Add button to add packages.</string>
+    <string name="latest_status">Latest status:&#160;</string>
+    <string-array name="package_status">
+        <item>Normal</item>
+        <item>Other</item>
+        <item>Failed</item>
+        <item>Delivered</item>
+        <item>Returned</item>
+        <item>On the way</item>
+        <item>Returning</item>
+    </string-array>
+    <!--package list page end-->
+
+
+    <!--About-->
+    <string name="version">Version</string>
+    <string name="rate">Rate</string>
+    <string name="rate_desc">If you like the Espresso app, please do rate it.</string>
+    <string name="licenses">Licenses</string>
+    <string name="thanks">Thanks</string>
+    <string name="thanks_1">FengGo</string>
+    <string name="thanks_1_desc">Package Tracker Project</string>
+    <string name="thanks_1_url">https://github.com/fython/PackageTracker</string>
+    <string name="thanks_2">+Youlun Zhai</string>
+    <string name="thanks_2_desc">Poster designer</string>
+    <string name="thanks_2_url">https://plus.google.com/+YoulunZhai</string>
+    <string name="source_code">GitHub Source code</string>
+    <string name="source_code_desc">https://github.com/TonnyL/Espresso</string>
+    <string name="support">Support</string>
+    <string name="send_advices">Send advices</string>
+    <string name="mail_account">mailto:marktonymengyi@gmail.com</string>
+    <string name="mail_topic">Espresso Advices</string>
+    <string name="send_advices_desc">Help me improve this app.</string>
+    <string name="donate">Donate</string>
+    <string name="donate_account">marktonymengyi@gmail.com</string>
+    <string name="donate_desc">Buy me a cup of coffee to keep me awake during my night coding sessions.</string>
+    <string name="donate_msg">Alipay account will be copied to clipboard. Launch Alipay and paste it to finish donating. Thanks for support!</string>
     <string name="set_end_time_error">Start time can not be same as end time.</string>
+    <string name="notification_new_message">\"The package has a new message\"</string>
+    <!--About end-->
+
+    <string name="something_wrong">Something wrong…</string>
+
+    <!--custom tabs-->
+    <string name="error_no_browser">No browser installed on the device.</string>
+    <!--custom tabs end-->
+
 </resources>

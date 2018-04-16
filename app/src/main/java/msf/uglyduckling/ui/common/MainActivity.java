@@ -29,7 +29,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @BindView(R.id.na_view)
+    @BindView(R.id.nav_view)
     NavigationView naView;
     @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
@@ -155,12 +155,15 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         switch (index) {
             case 0:
                 naView.setCheckedItem(R.id.nav_history_today);
+                toolbar.setTitle(R.string.historyToday);
                 break;
             case 1:
                 naView.setCheckedItem(R.id.nav_express);
+                toolbar.setTitle(R.string.express);
                 break;
             case 2:
                 naView.setCheckedItem(R.id.nav_weather);
+                toolbar.setTitle(R.string.weather);
                 break;
         }
     }

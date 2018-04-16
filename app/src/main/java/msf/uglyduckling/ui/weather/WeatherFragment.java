@@ -8,6 +8,7 @@ import msf.uglyduckling.base.BaseFragment;
  */
 
 public class WeatherFragment extends BaseFragment {
+
     @Override
     public int getLayoutId() {
         return R.layout.fragment_weather;
@@ -17,4 +18,6 @@ public class WeatherFragment extends BaseFragment {
     protected void viewCreate() {
 
     }
+
+
 }
