@@ -3,6 +3,7 @@ package msf.uglyduckling.net;
 import io.reactivex.observers.DisposableObserver;
 import msf.uglyduckling.bean.BaseResponse;
 import msf.uglyduckling.config.Const;
+import msf.uglyduckling.utils.LogUtils;
 
 /**
  * Created by Administrator on 2018/4/14.
@@ -25,6 +26,7 @@ public abstract class BeanCallback<T> extends DisposableObserver<BaseResponse<T>
 
     @Override
     public void onError(Throwable e) {
+        LogUtils.e("DisposableObserver.onError:" + e.toString());
         onFail(Const.ERROR_UNKNOWN);
     }
 

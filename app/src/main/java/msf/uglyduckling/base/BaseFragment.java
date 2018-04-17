@@ -41,6 +41,9 @@ public abstract class BaseFragment extends Fragment {
 
 
     public void showSnack(View view, String msg) {
-        Snackbar.make(view, msg, Snackbar.LENGTH_SHORT).show();
+        try {
+            Snackbar.make(view, msg, Snackbar.LENGTH_SHORT).show();
+        } catch (Exception e) {
+        }
     }
 }

@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -68,15 +69,31 @@ public class HistoryTodayFragment extends BaseFragment {
 
     private String saveImgUrl;
 
+
     @Override
     public int getLayoutId() {
         return R.layout.fragment_history_today;
     }
 
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+    }
+
+
     @Override
     protected void viewCreate() {
         setHasOptionsMenu(true);
-        refreshData(null);
+        //需要item高度自适应，导入方式要正确，如果item的宽高以item中的image决定，imageView要在代码里设置setAdjustViewBounds 固定宽高比，否自会自动缩放； 百度说要自适应需要设置manager.setAutoMeasureEnabled(true);但好像不需要？
+        LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        rv.setLayoutManager(manager);   //item动画，也可以在xml中设置到RecyclerView上，anim要跟manager对应
+        rv.setLayoutAnimation(AnimationUtils.loadLayoutAnimation(getContext(), R.anim.rv_load_anim));
+        if (currentMonth == 0)
+            refreshData(null);
+        else
+            refreshData(transformString(currentMonth, currentDay));
     }
 
     @Override
@@ -93,13 +110,7 @@ public class HistoryTodayFragment extends BaseFragment {
             DatePickerDialog dialog = new DatePickerDialog(getContext(), android.R.style.Theme_Holo_Light_Panel, new DatePickerDialog.OnDateSetListener() {
                 @Override   //月是从零开始，选择一月month是零
                 public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                    String sMonth = (month + 1) + "";
-                    String sDay = dayOfMonth + "";
-                    if (sMonth.length() == 1)
-                        sMonth = "0" + sMonth;
-                    if (sDay.length() == 1)
-                        sDay = "0" + sDay;
-                    refreshData(sMonth + sDay);
+                    refreshData(transformString(month, dayOfMonth));
                 }
             }, 2016, currentMonth, currentDay);
             dialog.setMessage("\n选择查看历史上的某一天!");
@@ -119,13 +130,19 @@ public class HistoryTodayFragment extends BaseFragment {
         return true;
     }
 
-
-    @Override
-    public void onStart() {
-        super.onStart();
+    @NonNull
+    private String transformString(int month, int dayOfMonth) {
+        String sMonth = (month + 1) + "";
+        String sDay = dayOfMonth + "";
+        if (sMonth.length() == 1)
+            sMonth = "0" + sMonth;
+        if (sDay.length() == 1)
+            sDay = "0" + sDay;
+        return sMonth + sDay;
     }
 
-    private void refreshData(String date) {
+
+    private void refreshData(final String date) {
         HistoryTodayModel.getHistoryToday(date, new BeanCallback<HistoryTodayBean>() {
             @Override
             public void onSuccess(HistoryTodayBean data) {
@@ -136,10 +153,6 @@ public class HistoryTodayFragment extends BaseFragment {
                 list = data.getList();
                 currentMonth = list.get(0).getMonth() - 1;
                 currentDay = list.get(0).getDay();
-                //需要item高度自适应，导入方式要正确，如果item的宽高以item中的image决定，imageView要在代码里设置setAdjustViewBounds 固定宽高比，否自会自动缩放； 百度说要自适应需要设置manager.setAutoMeasureEnabled(true);但好像不需要？
-                LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-                rv.setLayoutManager(manager);   //item动画，也可以在xml中设置到RecyclerView上，anim要跟manager对应
-                rv.setLayoutAnimation(AnimationUtils.loadLayoutAnimation(getContext(), R.anim.rv_load_anim));
                 rv.setAdapter(new MyAdapter());
             }
 
@@ -261,7 +274,7 @@ public class HistoryTodayFragment extends BaseFragment {
         }
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    static class MyViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.tv_title)
         TextView tvTitle;

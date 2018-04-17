@@ -21,12 +21,16 @@ public abstract class BaseActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         init();
     }
+
     protected abstract int getLayoutId();
 
     protected abstract void init();
 
     public void showSnack(View view, String msg) {
-        Snackbar.make(view, msg, Snackbar.LENGTH_SHORT).show();
+        try {
+            Snackbar.make(view, msg, Snackbar.LENGTH_SHORT).show();
+        } catch (Exception e) {
+        }
     }
 
 }

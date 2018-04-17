@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -39,9 +40,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         initViews();
-
         if (savedInstanceState != null) {
             lastIndex = savedInstanceState.getInt("lastIndex");
             FragmentManager supportFragmentManager = getSupportFragmentManager();
@@ -152,20 +151,25 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         lastIndex = index;
         transaction.show(fragments[index]);
         transaction.commit();
+        AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
         switch (index) {
             case 0:
                 naView.setCheckedItem(R.id.nav_history_today);
                 toolbar.setTitle(R.string.historyToday);
+                params.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL | AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS);
                 break;
             case 1:
                 naView.setCheckedItem(R.id.nav_express);
                 toolbar.setTitle(R.string.express);
+                params.setScrollFlags(0);
                 break;
             case 2:
                 naView.setCheckedItem(R.id.nav_weather);
                 toolbar.setTitle(R.string.weather);
+                params.setScrollFlags(0);
                 break;
         }
+        toolbar.setLayoutParams(params);
     }
 
     private void createFragment(int index) {
