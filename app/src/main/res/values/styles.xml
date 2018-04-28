@@ -19,6 +19,18 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="InputTextLayoutCounterStyle" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">@color/colorSecondaryText</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="preferenceTheme">@style/MaterialPreferenceTheme</item>
+    </style>
+
     <!-- 日夜间切换时的过渡动画，作用在window上 -->
     <style name="WindowAnimationFadeInOut">
         <item name="android:windowEnterAnimation">@anim/fade_in</item>

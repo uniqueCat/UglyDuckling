@@ -13,4 +13,8 @@ public class Api {
     public static final String SHOWAPI_SIGN = "8d4a3bf25c144bf396bb0752a9153c09";
 
     public static final String HISTORY_TODAY_FIELD = "119-42";
+
+    public static final String EXPRESS_FIELD = "64-19";
+
+    public static final String WEATHER_FIELD = "9-5";
 }

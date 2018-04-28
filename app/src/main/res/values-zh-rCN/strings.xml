@@ -50,6 +50,20 @@
     </string-array>
     <!--Settings end-->
 
+    <!--add package-->
+    <string name="scan_code">扫描</string>
+    <string name="tint_package_name">名称(可选)</string>
+    <string name="tint_package_number">运单号</string>
+    <string name="wrong_number_and_check">无效的运单号，请检查后重试。</string>
+    <string name="require_permission">你需要授予相机权限才能使用扫描功能。</string>
+    <string name="package_name_default_pre">包裹</string>
+    <string name="package_exist">运单号已经在你的列表里了，请不要重复添加。</string>
+    <string name="permission_denied">权限被拒绝</string>
+    <string name="error">错误</string>
+    <string name="something_wrong">发生了一些错误…</string>
+    <string name="unable_to_open_camera">无法打开相机，请检查后重试。</string>
+    <!--add package end-->
+
     <!--package list page-->
     <string name="all">全部</string>
     <string name="on_the_way">运输中</string>
@@ -65,22 +79,36 @@
     <string name="get_status_error">无法获取物流信息。</string>
     <string name="network_error">网络连接错误，请稍后重试。</string>
     <string name="package_number_copied">运单号已复制到剪贴板。</string>
+    <string name="package_update_success_newstatus">刷新成功，已获取最新物流信息</string>
+    <string name="package_update_success_not_newstatus">刷新成功，没有新的物流信息</string>
     <string name="package_removed_msg">已被移除。</string>
     <string name="undo">撤销</string>
     <string name="go_to_settings">去设置</string>
     <string name="to_add_packages">点击添加按钮添加包裹。</string>
     <string name="latest_status">最新状态:&#160;</string>
     <string-array name="package_status">
-        <item>运输中</item>
-        <item>其他</item>
-        <item>错误</item>
-        <item>已送达</item>
-        <item>已退回</item>
-        <item>正在派送</item>
-        <item>退回中</item>
+        <item>查询异常</item>
+        <item>暂无记录</item>
+        <item>在途中</item>
+        <item>派送中</item>
+        <item>已签收</item>
+        <item>用户拒签</item>
+        <item>疑难件</item>
+        <item>无效单</item>
+        <item>超时单</item>
+        <item>签收失败</item>
+        <item>退回</item>
+        <item>待查询</item>
     </string-array>
     <!--package list page end-->
 
+    <!--search-->
+    <string name="no_result">无结果</string>
+    <string name="search_hint">包裹或公司…</string>
+    <string name="search_label_package">包裹</string>
+    <string name="search_label_company">快递公司</string>
+    <string name="item_loading">加载中…</string>
+    <!--search end-->
     <!--About-->
     <string name="version">版本</string>
     <string name="rate">评分</string>
@@ -108,12 +136,21 @@
     <string name="notification_new_message">\"包裹有一条新物流信息。\"</string>
     <!--About end-->
 
-    <string name="something_wrong">发生了一些错误…</string>
-
     <!--custom tabs-->
     <string name="error_no_browser">设备上没有安装浏览器。</string>
     <!--custom tabs end-->
 
     <string name="searchSomeday">搜索某一天</string>
+
+    <!--package details-->
+    <string name="package_status">物流信息</string>
+    <string name="company_name">公司名称</string>
+    <string name="package_number">运单号码</string>
+    <string name="package_name">包裹名称</string>
+    <string name="delete_package_massage">你将不再跟踪这个包裹的物流信息。</string>
+    <string name="deliver_man">快递员</string>
+    <string name="edit_name">编辑包裹名称</string>
+    <string name="input_empty">包裹名称不能为空!</string>
+    <!--package details end-->
 
 </resources>

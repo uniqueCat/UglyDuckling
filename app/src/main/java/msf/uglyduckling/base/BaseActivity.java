@@ -1,5 +1,6 @@
 package msf.uglyduckling.base;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -25,6 +26,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected abstract int getLayoutId();
 
     protected abstract void init();
+
+    public void jumpActivity(Class<? extends AppCompatActivity> c){
+        startActivity(new Intent(this,c));
+    }
 
     public void showSnack(View view, String msg) {
         try {

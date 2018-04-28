@@ -115,6 +115,7 @@ public class HistoryTodayFragment extends BaseFragment {
             }, 2016, currentMonth, currentDay);
             dialog.setMessage("\n选择查看历史上的某一天!");
             dialog.show();
+            dialog.getWindow().setWindowAnimations(R.style.dialogWindowAnim);
             //得到dialog的日期控件
             DatePicker datePicker = dialog.getDatePicker();
             try {
@@ -247,7 +248,7 @@ public class HistoryTodayFragment extends BaseFragment {
                     boolean compress = resource.compress(Bitmap.CompressFormat.JPEG, 100, fos);
                     if (compress) {
                         getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)));
-                        showSnack(getView(), "保存成功");
+                        showSnack(getView(), "图片保存成功");
                     }
                 } catch (FileNotFoundException e) {
 

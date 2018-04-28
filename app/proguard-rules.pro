@@ -23,3 +23,17 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+-dontwarn org.codehaus.**
+-dontwarn java.nio.**
+-dontwarn java.lang.invoke.**
+-dontwarn rx.**
+
+# OkHttp3
+-dontwarn okhttp3.**
+-keep class okhttp3.**{*;}
+
+-dontwarn okio.**
+-keep class okip.**{*;}
+# Retrofit
+-dontwarn retrofit2.**
+-keep class retrofit2.**{*; }

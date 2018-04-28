@@ -5,8 +5,19 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorPrimaryText">#212121</color>
     <color name="colorSecondaryText">#757575</color>
+    <color name="colorDivider">#BDBDBD</color>
 
     <color name="layout_background">#fafafa</color>
     <color name="colorNavItemUnselected">#757575</color>
     <color name="historyTodayTextBg">#304ca4e7</color>
+
+    <color name="deep_orange">#FF5722</color>
+    <color name="cyan_500">#00BCD4</color>
+    <color name="green_500">#4CAF50</color>
+    <color name="light_blue_500">#03A9F4</color>
+    <color name="orange_500">#FF9800</color>
+    <color name="lime_500">#CDDC39</color>
+    <color name="amber_500">#FFC107</color>
+    <color name="pink_500">#E91E63</color>
+
 </resources>

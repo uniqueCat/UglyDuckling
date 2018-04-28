@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
+import android.view.View;
 import android.view.Window;
 
 import msf.uglyduckling.R;
@@ -27,6 +29,8 @@ public class NotifyDialog {
     private String title;
 
     private String msg = "";
+
+    private View view;
 
 
     public void show(@NonNull Context context, String msg) {
@@ -68,7 +72,6 @@ public class NotifyDialog {
     private void create(@NonNull Context context, String msg) {
         dialog = new AlertDialog.Builder(context)
                 .setTitle(title == null ? "温馨提醒" : title)
-                .setMessage(msg != null ? msg : this.msg)
                 .setCancelable(enable)
                 .setNegativeButton(negativeButton == null ? "取消" : negativeButton, new DialogInterface.OnClickListener() {
                     @Override
@@ -85,6 +88,12 @@ public class NotifyDialog {
                         dismmis();
                     }
                 }).create();
+        if (!TextUtils.isEmpty(msg))
+            dialog.setMessage(msg);
+        if (!TextUtils.isEmpty(this.msg))
+            dialog.setMessage(this.msg);
+        if (view != null)
+            dialog.setView(view);
     }
 
     private void dismmis() {
@@ -105,6 +114,15 @@ public class NotifyDialog {
 
     public NotifyDialog setTitle(String title) {
         this.title = title;
+        return this;
+    }
+
+    public View getView() {
+        return view;
+    }
+
+    public NotifyDialog setView(View view) {
+        this.view = view;
         return this;
     }
 
