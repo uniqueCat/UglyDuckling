@@ -1,8 +1,8 @@
 package msf.uglyduckling.ui.express;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Build;
@@ -13,10 +13,11 @@ import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
@@ -33,6 +34,8 @@ import msf.uglyduckling.realm.RealmPackageHelper;
 import msf.uglyduckling.utils.LogUtils;
 import msf.uglyduckling.utils.NetworkUtil;
 import msf.uglyduckling.widget.NotifyDialog;
+import msf.uglyduckling.zxing.CaptureActivity;
+import msf.uglyduckling.zxing.camera.CameraManager;
 
 /**
  * Created by Administrator on 2018/4/25.
@@ -195,7 +198,7 @@ public class AddPackageActivity extends BaseActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
             case REQUEST_CAMERA_PERMISSION_CODE:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if (canUseCamera(this)) {
                     startScanningActivity();
                 } else {
                     hideImm();
@@ -224,10 +227,24 @@ public class AddPackageActivity extends BaseActivity {
     //检测相机权限 有跳转二维码扫描，没有请求
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void checkPermissionOrToScan() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION_CODE);
-        } else {
+        //通过ContextCompat.checkSelfPermission() 检测是否有相机权限的方式在金立f100上没用，总是返回true，只好通过打开一次相机来判断是否有权限！估计是有的厂商定制搞了第二套权限管理的原因
+        if (canUseCamera(this)) {
             startScanningActivity();
+        } else {
+            requestPermissions(new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION_CODE);
+        }
+    }
+
+    //打开一次相机来判断是否有相机权限；此操作略耗时。在努比亚z11 4g-64g 手机上需要0.3-0.4秒
+    public static boolean canUseCamera(Context context) {
+        try {
+            SurfaceHolder holder = new SurfaceView(context).getHolder();
+            CameraManager cameraManager = new CameraManager(context);
+            cameraManager.openDriver(holder);
+            cameraManager.closeDriver();
+            return true;
+        } catch (Exception e) {
+            return false;
         }
     }
 

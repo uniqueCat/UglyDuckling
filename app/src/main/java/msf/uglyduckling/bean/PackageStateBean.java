@@ -46,9 +46,4 @@ public class PackageStateBean extends RealmObject implements Cloneable {
 
     public PackageStateBean() {
     }
-
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        return super.clone();
-    }
 }

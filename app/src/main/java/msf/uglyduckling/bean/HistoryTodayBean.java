@@ -1,12 +1,14 @@
 package msf.uglyduckling.bean;
 
-import java.util.List;
+import io.realm.RealmList;
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 /**
  * Created by Administrator on 2018/4/14.
  */
 
-public class HistoryTodayBean {
+public class HistoryTodayBean extends RealmObject {
 
     /**
      * ret_code : 0
@@ -14,7 +16,18 @@ public class HistoryTodayBean {
      */
 
     private int ret_code;
-    private List<ListBean> list;
+    private RealmList<HistoryTodayListBean> list;
+    @PrimaryKey
+    private String monthDay;
+    private long updateTime;
+
+    public long getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(long updateTime) {
+        this.updateTime = updateTime;
+    }
 
     public int getRet_code() {
         return ret_code;
@@ -24,67 +37,20 @@ public class HistoryTodayBean {
         this.ret_code = ret_code;
     }
 
-    public List<ListBean> getList() {
+    public RealmList<HistoryTodayListBean> getList() {
         return list;
     }
 
-    public void setList(List<ListBean> list) {
+    public void setList(RealmList<HistoryTodayListBean> list) {
         this.list = list;
     }
 
-    public static class ListBean {
-        /**
-         * title : 隋炀帝下令开凿大运河
-         * month : 4
-         * year : 605
-         * day : 14
-         * img : http://img.lssdjt.com/201705/02221100530.jpg
-         */
-
-        private String title;
-        private int month;
-        private String year;
-        private int day;
-        private String img;
-
-        public String getTitle() {
-            return title;
-        }
-
-        public void setTitle(String title) {
-            this.title = title;
-        }
-
-        public int getMonth() {
-            return month;
-        }
-
-        public void setMonth(int month) {
-            this.month = month;
-        }
-
-        public String getYear() {
-            return year;
-        }
-
-        public void setYear(String year) {
-            this.year = year;
-        }
-
-        public int getDay() {
-            return day;
-        }
-
-        public void setDay(int day) {
-            this.day = day;
-        }
-
-        public String getImg() {
-            return img;
-        }
-
-        public void setImg(String img) {
-            this.img = img;
-        }
+    public String getMonthDay() {
+        return monthDay;
     }
+
+    public void setMonthDay(String monthDay) {
+        this.monthDay = monthDay;
+    }
+
 }

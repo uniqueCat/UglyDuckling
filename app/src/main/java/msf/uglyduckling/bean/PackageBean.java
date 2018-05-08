@@ -195,6 +195,7 @@ public class PackageBean extends RealmObject {
         pack.setMailNo(mailNo);
         pack.setMsg(msg);
         pack.setTel(tel);
+        pack.setStatus(status);
         pack.setRet_code(ret_code);
         pack.setUpdateStr(updateStr);
         pack.setUpdate(update);

@@ -34,5 +34,4 @@ public class PermissionsChecker {
                 PackageManager.PERMISSION_GRANTED;
     }
 
-
 }

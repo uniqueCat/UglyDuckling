@@ -26,7 +26,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +48,7 @@ import msf.uglyduckling.bean.PackageBean;
 import msf.uglyduckling.net.Api;
 import msf.uglyduckling.net.RetrofitUtil;
 import msf.uglyduckling.net.service.PackageService;
+import msf.uglyduckling.realm.RealmHistoryHelper;
 import msf.uglyduckling.realm.RealmPackageHelper;
 import msf.uglyduckling.utils.LogUtils;
 import msf.uglyduckling.utils.NetworkUtil;
@@ -73,8 +73,7 @@ public class ExpressFragment extends BaseFragment implements BottomNavigationVie
     FloatingActionButton fab;
     @BindView(R.id.bottomNavigationView)
     BottomNavigationView bottomNavigationView;
-    @BindView(R.id.fragment_packages)
-    RelativeLayout fragmentPackages;
+
 
     private String showType = TYPE_ALL;
     private static final String TYPE_ALL = "all";
@@ -334,6 +333,7 @@ public class ExpressFragment extends BaseFragment implements BottomNavigationVie
         transportPackages.clear();
         deliveredPackages.clear();
         for (PackageBean packageBean : allPackages) {
+            LogUtils.e("  package status:" + packageBean.getStatus());
             if (packageBean.getStatus() == 4) {
                 deliveredPackages.add(packageBean);
             } else {
@@ -499,6 +499,13 @@ public class ExpressFragment extends BaseFragment implements BottomNavigationVie
         if (resultCode == RESULT_OK)    //添加包裹成功  或者查看时修改了名字或删除了  都用从本地重新获取数据刷新
             localLoadingPackages();
 
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        //数据库关闭，防止内存泄漏
+        RealmHistoryHelper.getInstance().close();
     }
 
     class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.PackageViewHolder> {

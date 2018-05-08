@@ -41,6 +41,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import butterknife.BindView;
@@ -48,9 +49,11 @@ import butterknife.ButterKnife;
 import msf.uglyduckling.R;
 import msf.uglyduckling.base.BaseFragment;
 import msf.uglyduckling.bean.HistoryTodayBean;
+import msf.uglyduckling.bean.HistoryTodayListBean;
 import msf.uglyduckling.config.Const;
 import msf.uglyduckling.net.BeanCallback;
 import msf.uglyduckling.net.model.HistoryTodayModel;
+import msf.uglyduckling.realm.RealmHistoryHelper;
 import msf.uglyduckling.utils.CustomTabsHelper;
 import msf.uglyduckling.utils.PermissionsChecker;
 
@@ -63,7 +66,7 @@ public class HistoryTodayFragment extends BaseFragment {
     @BindView(R.id.rv)
     RecyclerView rv;
 
-    private List<HistoryTodayBean.ListBean> list;
+    private List<HistoryTodayListBean> list;
 
     private int currentMonth = 0, currentDay = 1;
 
@@ -144,6 +147,22 @@ public class HistoryTodayFragment extends BaseFragment {
 
 
     private void refreshData(final String date) {
+        String monthDay = date;
+        if (date == null) {
+            Calendar calendar = Calendar.getInstance();
+            monthDay = transformString(calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+        }
+        HistoryTodayBean historyTodayBean = RealmHistoryHelper.getInstance().queryHistoryBean(monthDay);
+        if (historyTodayBean != null) {
+            //距离上次更新时间超过一天从数据库删除
+            if (System.currentTimeMillis() - historyTodayBean.getUpdateTime() > 20 * 60 * 60 * 1000) {
+                RealmHistoryHelper.getInstance().removeHistoryToday(historyTodayBean.getMonthDay());
+            } else {
+                //使用数据库的内容
+                refreshUI(historyTodayBean);
+                return;
+            }
+        }
         HistoryTodayModel.getHistoryToday(date, new BeanCallback<HistoryTodayBean>() {
             @Override
             public void onSuccess(HistoryTodayBean data) {
@@ -151,10 +170,9 @@ public class HistoryTodayFragment extends BaseFragment {
                     showSnack(getView(), "获取数据失败");
                     return;
                 }
-                list = data.getList();
-                currentMonth = list.get(0).getMonth() - 1;
-                currentDay = list.get(0).getDay();
-                rv.setAdapter(new MyAdapter());
+                refreshUI(data);
+                //存入数据库
+                RealmHistoryHelper.getInstance().increasesHistoryToday(data);
             }
 
             @Override
@@ -162,6 +180,19 @@ public class HistoryTodayFragment extends BaseFragment {
                 showSnack(getView(), msg);
             }
         });
+    }
+
+    private void refreshUI(HistoryTodayBean data) {
+        list = data.getList();
+        currentMonth = list.get(0).getMonth() - 1;
+        currentDay = list.get(0).getDay();
+        rv.setAdapter(new MyAdapter());
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        RealmHistoryHelper.getInstance().close();
     }
 
     private class MyAdapter extends RecyclerView.Adapter<MyViewHolder> implements View.OnClickListener, View.OnLongClickListener {
@@ -181,7 +212,7 @@ public class HistoryTodayFragment extends BaseFragment {
         @SuppressLint("SetTextI18n")
         @Override
         public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
-            HistoryTodayBean.ListBean listBean = list.get(position);
+            HistoryTodayListBean listBean = list.get(position);
             holder.tvTitle.setText(listBean.getTitle());
             holder.tvYear.setText(listBean.getYear() + "年" + listBean.getMonth() + "月" + listBean.getDay() + "日");
             if (getContext() == null)
